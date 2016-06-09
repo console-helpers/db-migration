@@ -1,0 +1,34 @@
+{
+	"name": "console-helpers/db-migration",
+	"description": "Database migrations made simple",
+	"keywords": ["database", "migration", "sqlite"],
+	"license": "BSD 3-Clause",
+	"authors": [
+		{
+			"name": "Alexander Obuhovich",
+			"email": "aik.bold@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.7",
+		"aura/sql": "^2.5"
+	},
+	"require-dev": {
+		"aik099/coding-standard": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"ConsoleHelpers\\DatabaseMigration\\": "src/DatabaseMigration/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\ConsoleHelpers\\DatabaseMigration\\": "tests/DatabaseMigration/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.1.x-dev"
+		}
+	}
+}
