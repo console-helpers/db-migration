@@ -11,12 +11,19 @@
 
 DB-Migration is a library allows to run migrations on SQLite databases with ease.
 
+Goals, when developing the library:
+
+* allow initializing library without knowing database connection details upfront
+* allow creating new migration file without knowing database connection details upfront
+* allow using several databases in parallel
+* being framework agnostic
+
 ## Usage
 
+### Initialization
+
 ```php
-use Aura\Sql\ExtendedPdo;
 use ConsoleHelpers\DatabaseMigration\MigrationManager;
-use ConsoleHelpers\DatabaseMigration\MigrationContext;
 use ConsoleHelpers\DatabaseMigration\PhpMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\SqlMigrationRunner;
 use Pimple\Container;
@@ -30,20 +37,68 @@ $migration_manager = new MigrationManager(
 // 2. Register migration runners.
 $migration_manager->registerMigrationRunner(new SqlMigrationRunner());
 $migration_manager->registerMigrationRunner(new PhpMigrationRunner());
+```
 
-// 3. Create database connection.
+### Creating new migration
+
+The following code will create `YYYYMMDD_HHMM_name.ext` migration file in configured migration folder and return it's name.
+
+```php
+use ConsoleHelpers\DatabaseMigration\MigrationManager;
+
+$migration_name = $migration_manager->createMigration(
+	'example_migration', // any valid filename
+	'sql' // 'php' or 'sql' (comes from migration runner)
+);
+```
+
+As a result:
+
+* the `/path/to/migrations/20160519_2155_example_migration.sql` file would be created
+* the `20160519_2155_example_migration.sql` would be returned to `$migration_name` variable
+
+#### Migration Templates
+
+__SQL:__
+
+Empty file.
+
+__PHP:__
+
+```php
+<?php
+use ConsoleHelpers\DatabaseMigration\MigrationContext;
+
+return function (MigrationContext $context) {
+	// Write PHP code here.
+};
+``` 
+
+### Running migrations
+
+```php
+use Aura\Sql\ExtendedPdo;
+use ConsoleHelpers\DatabaseMigration\MigrationManager;
+use ConsoleHelpers\DatabaseMigration\MigrationContext;
+use Pimple\Container;
+
+// 1. Create database connection.
 $database = new ExtendedPdo('sqlite:/path/to/database.sqlite');
 
-// 4. Run migrations.
+// 2. Run migrations.
 $migration_manager->runMigrations(
-	// Context consists of database and a container.
+	// Context consists of the database and container.
 	new MigrationContext($database)
 );
 ```
 
 ## Installation
 
-* execute this command to add dependencies: `php composer.phar require console-helpers/db-migration:^0.1`
+Execute this command to add dependencies:
+
+```bash
+php composer.phar require console-helpers/db-migration:^0.1
+```
 
 ## Requirements
 
