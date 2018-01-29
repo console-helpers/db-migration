@@ -2,7 +2,7 @@
 	"name": "console-helpers/db-migration",
 	"description": "Database migrations made simple",
 	"keywords": ["database", "migration", "sqlite"],
-	"license": "BSD 3-Clause",
+	"license": "BSD-3-Clause",
 	"authors": [
 		{
 			"name": "Alexander Obuhovich",
