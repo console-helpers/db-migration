@@ -14,7 +14,7 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use Prophecy\Prophecy\ObjectProphecy;
 
-abstract class AbstractMigrationRunnerTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractMigrationRunnerTest extends AbstractTestCase
 {
 
 	/**

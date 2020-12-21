@@ -14,7 +14,7 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use Aura\Sql\ExtendedPdoInterface;
 use ConsoleHelpers\DatabaseMigration\MigrationContext;
 
-class MigrationContextTest extends \PHPUnit_Framework_TestCase
+class MigrationContextTest extends AbstractTestCase
 {
 
 	/**
