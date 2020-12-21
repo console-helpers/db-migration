@@ -1,4 +1,3 @@
-sudo: false
 language: php
 
 cache:
@@ -7,11 +6,6 @@ cache:
 
 php:
     - 5.6
-    - 7.0
-    - 7.1
-    - 7.2
-    - 7.3
-    - 7.4
 
 matrix:
     include:
@@ -19,6 +13,17 @@ matrix:
           dist: trusty
         - php: 5.5
           dist: trusty
+          env: PHPUNIT_VERSION="^4.8"
+        - php: 7.0
+          env: PHPUNIT_VERSION="^6.5"
+        - php: 7.1
+          env: PHPUNIT_VERSION="^7.2"
+        - php: 7.2
+          env: PHPUNIT_VERSION="^7.2"
+        - php: 7.3
+          env: PHPUNIT_VERSION="^7.2"
+        - php: 7.4
+          env: PHPUNIT_VERSION="^7.2"
 
 before_install:
     - composer config -g github-oauth.github.com 8a184177873281ce443912bd9f8fc4a959f7e7bb
@@ -26,12 +31,15 @@ before_install:
 
 install:
     - composer update --prefer-dist --no-interaction
+    - if [ "$PHPUNIT_VERSION" != "" ]; then composer global require "phpunit/phpunit:${PHPUNIT_VERSION}" --no-interaction; fi;
 
 before_script:
     - mkdir -p build/logs
+    - DEPENDENCY_BINARY_FOLDER=`composer global config bin-dir --absolute --quiet`
 
 script:
-    - phpunit --coverage-clover build/logs/clover.xml
+    - if [ "$PHPUNIT_VERSION" != "" ]; then ${DEPENDENCY_BINARY_FOLDER}/phpunit --coverage-clover build/logs/clover.xml; fi;
+    - if [ "$PHPUNIT_VERSION" = "" ]; then phpunit --coverage-clover build/logs/clover.xml; fi;
 
 after_script:
     - php vendor/bin/coveralls -v
