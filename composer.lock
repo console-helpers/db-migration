@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e91376b894ca2d38bc1b6818976a082",
+    "content-hash": "06c6d7d46ea09f2a062274afa924495e",
     "packages": [
         {
             "name": "aura/sql",
@@ -70,21 +70,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aik099/CodingStandard.git",
-                "reference": "3455e4d487e2cdd6460d2414d946de5cfabcd69f"
+                "reference": "4b605a2fadc7f69bd89ee83a388d2965a0b34b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aik099/CodingStandard/zipball/3455e4d487e2cdd6460d2414d946de5cfabcd69f",
-                "reference": "3455e4d487e2cdd6460d2414d946de5cfabcd69f",
+                "url": "https://api.github.com/repos/aik099/CodingStandard/zipball/4b605a2fadc7f69bd89ee83a388d2965a0b34b0c",
+                "reference": "4b605a2fadc7f69bd89ee83a388d2965a0b34b0c",
                 "shasum": ""
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "~2.0"
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -102,7 +102,7 @@
                 "PHP_CodeSniffer",
                 "codesniffer"
             ],
-            "time": "2016-05-21T12:59:53+00:00"
+            "time": "2020-01-14T16:30:17+00:00"
         }
     ],
     "aliases": [],
@@ -115,5 +115,6 @@
     "platform": {
         "php": ">=5.3.7"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
