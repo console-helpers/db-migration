@@ -38,8 +38,8 @@ before_script:
     - DEPENDENCY_BINARY_FOLDER=`composer global config bin-dir --absolute --quiet`
 
 script:
-    - if [ "$PHPUNIT_VERSION" != "" ]; then ${DEPENDENCY_BINARY_FOLDER}/phpunit --coverage-clover build/logs/clover.xml; fi;
-    - if [ "$PHPUNIT_VERSION" = "" ]; then phpunit --coverage-clover build/logs/clover.xml; fi;
+    - if [ "$PHPUNIT_VERSION" != "" ]; then XDEBUG_MODE=coverage ${DEPENDENCY_BINARY_FOLDER}/phpunit --coverage-clover build/logs/clover.xml; fi;
+    - if [ "$PHPUNIT_VERSION" = "" ]; then XDEBUG_MODE=coverage phpunit --coverage-clover build/logs/clover.xml; fi;
 
 after_script:
     - php vendor/bin/coveralls -v
