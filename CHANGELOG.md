@@ -12,6 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ...
 
+## [0.1.1] - 2020-12-21
+### Fixed
+- Allow using with PHP 8.
 
 ## [0.1.0] - 2016-06-09
 ### Added
