@@ -10,11 +10,12 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.7",
+		"php": ">=5.4",
 		"aura/sql": "^2.5 | ^3.0"
 	},
 	"require-dev": {
-		"aik099/coding-standard": "dev-master"
+		"aik099/coding-standard": "dev-master",
+		"yoast/phpunit-polyfills": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {

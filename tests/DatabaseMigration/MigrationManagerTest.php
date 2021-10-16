@@ -18,9 +18,12 @@ use ConsoleHelpers\DatabaseMigration\MigrationManager;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Tests\ConsoleHelpers\DatabaseMigration\ProphecyToken\RegExToken;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 {
+
+    use ExpectException;
 
 	/**
 	 * Container.
@@ -64,10 +67,8 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 
 	public function testMigrationsDirectoryIsAFile()
 	{
-		$this->setExpectedException(
-			'InvalidArgumentException',
-			'The "' . __FILE__ . '" does not exist or not a directory.'
-		);
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage('The "' . __FILE__ . '" does not exist or not a directory.');
 
 		new MigrationManager(__FILE__, $this->container);
 	}
@@ -175,7 +176,9 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 
 		$migration_name = $manager->createMigration('test', 'one');
 
-		$this->setExpectedException('LogicException', 'The migration file "' . $migration_name . '" already exists.');
+        $this->expectException('LogicException');
+        $this->expectExceptionMessage('The migration file "' . $migration_name . '" already exists.');
+
 		$manager->createMigration('test', 'one');
 	}
 

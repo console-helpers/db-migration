@@ -13,8 +13,9 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use Aura\Sql\ExtendedPdo;
 use Aura\Sql\ExtendedPdoInterface;
+use PHPUnit\Framework\TestCase;
 
-abstract class AbstractDatabaseAwareTestCase extends AbstractTestCase
+abstract class AbstractDatabaseAwareTestCase extends TestCase
 {
 
 	/**

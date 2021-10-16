@@ -12,9 +12,10 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
-abstract class AbstractMigrationRunnerTest extends AbstractTestCase
+abstract class AbstractMigrationRunnerTest extends TestCase
 {
 
 	/**
