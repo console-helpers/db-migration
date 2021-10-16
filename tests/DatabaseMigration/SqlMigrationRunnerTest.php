@@ -14,21 +14,23 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\SqlMigrationRunner;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class SqlMigrationRunnerTest extends AbstractMigrationRunnerTest
 {
+
+	use ExpectException;
 
 	public function testGetFileExtension()
 	{
 		$this->assertEquals('sql', $this->runner->getFileExtension());
 	}
 
-	/**
-	 * @expectedException \LogicException
-	 * @expectedExceptionMessage The "empty-migration.sql" migration contains no SQL statements.
-	 */
 	public function testRunEmptySQLMigration()
 	{
+		$this->expectException('LogicException');
+		$this->expectExceptionMessage('The "empty-migration.sql" migration contains no SQL statements.');
+
 		$this->runner->run($this->getFixture('empty-migration.sql'), $this->context->reveal());
 	}
 
