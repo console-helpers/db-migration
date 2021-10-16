@@ -43,7 +43,14 @@ jobs:
       - name: Upload Coverage to CodeCov
         uses: codecov/codecov-action@v2
 
-      - name: Upload Coverage to Scrutinizer CI
+      - name: Upload Coverage to Scrutinizer CI (PHP < 8.0)
+        if: "${{ matrix.php < '8.0' }}"
         run: |
           wget https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --repository=g/console-helpers/db-migration --format=php-clover coverage.clover
+
+      - name: Upload Coverage to Scrutinizer CI (PHP >= 8.0)
+        if: "${{ matrix.php >= '8.0' }}"
+        run: |
+           composer require scrutinizer/ocular
+           vendor/bin/ocular code-coverage:upload --repository=g/console-helpers/db-migration --format=php-clover coverage.clover
