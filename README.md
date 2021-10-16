@@ -1,7 +1,7 @@
 # DB-Migration
 
-[![Build Status](https://travis-ci.org/console-helpers/db-migration.svg?branch=master)](https://travis-ci.org/console-helpers/db-migration)
-[![Coverage Status](https://coveralls.io/repos/github/console-helpers/db-migration/badge.svg?branch=master)](https://coveralls.io/github/console-helpers/db-migration?branch=master)
+[![CI](https://github.com/console-helpers/db-migration/actions/workflows/tests.yml/badge.svg)](https://github.com/console-helpers/db-migration/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/console-helpers/db-migration/branch/master/graph/badge.svg?token=U4gksfjYYj)](https://codecov.io/gh/console-helpers/db-migration)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/console-helpers/db-migration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/console-helpers/db-migration/?branch=master)
 
 
