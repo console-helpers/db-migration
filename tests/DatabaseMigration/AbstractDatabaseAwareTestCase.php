@@ -25,10 +25,12 @@ abstract class AbstractDatabaseAwareTestCase extends TestCase
 	 */
 	protected $database;
 
-	protected function setUp()
+	/**
+	 * @before
+	 * @return void
+	 */
+	protected function setupTest()
 	{
-		parent::setUp();
-
 		$this->database = $this->createDatabase();
 	}
 

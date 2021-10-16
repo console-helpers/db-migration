@@ -39,10 +39,12 @@ class MigrationContextTest extends TestCase
 	 */
 	protected $context;
 
-	protected function setUp()
+	/**
+	 * @before
+	 * @return void
+	 */
+	protected function setupTest()
 	{
-		parent::setUp();
-
 		$this->database = $this->prophesize('Aura\Sql\ExtendedPdoInterface')->reveal();
 		$this->container = $this->prophesize('ArrayAccess')->reveal();
 

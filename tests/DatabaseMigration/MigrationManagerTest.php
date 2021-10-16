@@ -23,7 +23,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 {
 
-    use ExpectException;
+	use ExpectException;
 
 	/**
 	 * Container.
@@ -39,29 +39,34 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 	 */
 	protected $context;
 
-	protected function setUp()
+	/**
+	 * @before
+	 * @return void
+	 */
+	protected function setupTest()
 	{
-		parent::setUp();
+		parent::setupTest();
 
 		$this->container = $this->prophesize('ArrayAccess')->reveal();
 		$this->context = new MigrationContext($this->database);
 	}
 
-	protected function tearDown()
+	/**
+	 * @after
+	 * @return void
+	 */
+	protected function tearDownTest()
 	{
-		parent::tearDown();
-
 		if ( strpos($this->getName(false), 'testCreateMigration') === 0 ) {
 			$this->deleteTempMigrations();
 		}
 	}
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage The "non-existing" does not exist or not a directory.
-	 */
 	public function testMissingMigrationsDirectory()
 	{
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage('The "non-existing" does not exist or not a directory.');
+
 		new MigrationManager('non-existing', $this->container);
 	}
 
@@ -82,25 +87,26 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 		$this->assertEquals(array('one', 'two'), $manager->getMigrationFileExtensions());
 	}
 
-	/**
-	 * @expectedException \LogicException
-	 * @expectedExceptionMessage No migrations runners registered.
-	 */
 	public function testGetMigrationFileExtensionsEmpty()
 	{
+		$this->expectException('LogicException');
+		$this->expectExceptionMessage('No migrations runners registered.');
+
 		$manager = $this->getMigrationManager('migrations-none');
 
 		$manager->getMigrationFileExtensions();
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage The migration name can consist only from alpha-numeric characters, as well as dots and underscores.
-	 *
 	 * @dataProvider createMigrationWithInvalidNameDataProvider
 	 */
 	public function testCreateMigrationWithInvalidName($migration_name)
 	{
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage(
+			'The migration name can consist only from alpha-numeric characters, as well as dots and underscores.'
+		);
+
 		$manager = $this->getMigrationManager('migrations-none');
 		$manager->registerMigrationRunner($this->createMigrationRunnerMock('one')->reveal());
 
@@ -116,12 +122,11 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 		);
 	}
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage The migration runner for "invalid" file extension is not registered.
-	 */
 	public function testCreateMigrationWithInvalidFileExtension()
 	{
+		$this->expectException('InvalidArgumentException');
+		$this->expectExceptionMessage('The migration runner for "invalid" file extension is not registered.');
+
 		$manager = $this->getMigrationManager('migrations-none');
 		$manager->registerMigrationRunner($this->createMigrationRunnerMock('one')->reveal());
 
@@ -176,8 +181,8 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 
 		$migration_name = $manager->createMigration('test', 'one');
 
-        $this->expectException('LogicException');
-        $this->expectExceptionMessage('The migration file "' . $migration_name . '" already exists.');
+		$this->expectException('LogicException');
+		$this->expectExceptionMessage('The migration file "' . $migration_name . '" already exists.');
 
 		$manager->createMigration('test', 'one');
 	}
