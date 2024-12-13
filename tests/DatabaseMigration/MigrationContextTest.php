@@ -44,7 +44,7 @@ class MigrationContextTest extends AbstractTestCase
 	 */
 	protected function setupTest()
 	{
-		$this->database = $this->prophesize('Aura\Sql\ExtendedPdoInterface')->reveal();
+		$this->database = $this->prophesize(ExtendedPdoInterface::class)->reveal();
 		$this->container = $this->prophesize('ArrayAccess')->reveal();
 
 		$this->context = new MigrationContext($this->database);

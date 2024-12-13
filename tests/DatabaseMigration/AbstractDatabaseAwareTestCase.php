@@ -69,7 +69,7 @@ abstract class AbstractDatabaseAwareTestCase extends AbstractTestCase
 	 */
 	protected function assertTableContent($table_name, array $expected_content)
 	{
-		$this->assertSame(
+		$this->assertEquals(
 			$expected_content,
 			$this->_dumpTable($table_name),
 			'Table "' . $table_name . '" content isn\'t correct.'

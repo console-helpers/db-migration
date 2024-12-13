@@ -13,6 +13,8 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use Prophecy\Prophecy\ObjectProphecy;
+use Aura\Sql\ExtendedPdoInterface;
+use ConsoleHelpers\DatabaseMigration\MigrationContext;
 
 abstract class AbstractMigrationRunnerTestCase extends AbstractTestCase
 {
@@ -44,9 +46,9 @@ abstract class AbstractMigrationRunnerTestCase extends AbstractTestCase
 	 */
 	protected function setupTest()
 	{
-		$this->database = $this->prophesize('Aura\Sql\ExtendedPdoInterface');
+		$this->database = $this->prophesize(ExtendedPdoInterface::class);
 
-		$this->context = $this->prophesize('ConsoleHelpers\DatabaseMigration\MigrationContext');
+		$this->context = $this->prophesize(MigrationContext::class);
 		$this->context->getDatabase()->willReturn($this->database);
 
 		$this->runner = $this->createMigrationRunner();

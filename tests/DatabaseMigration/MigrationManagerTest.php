@@ -18,6 +18,7 @@ use ConsoleHelpers\DatabaseMigration\MigrationManager;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Tests\ConsoleHelpers\DatabaseMigration\ProphecyToken\RegExToken;
+use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 
 class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 {
@@ -54,7 +55,7 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 	 */
 	protected function tearDownTest()
 	{
-		if ( strpos($this->getName(false), 'testCreateMigration') === 0 ) {
+		if ( strpos($this->getTestName(), 'testCreateMigration') === 0 ) {
 			$this->deleteTempMigrations();
 		}
 	}
@@ -110,7 +111,7 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 		$manager->createMigration($migration_name, 'one');
 	}
 
-	public function createMigrationWithInvalidNameDataProvider()
+	public static function createMigrationWithInvalidNameDataProvider()
 	{
 		return array(
 			array(' '),
@@ -292,7 +293,7 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 
 	public function testRunSetsContainerToContext()
 	{
-		$context = $this->prophesize('ConsoleHelpers\DatabaseMigration\MigrationContext');
+		$context = $this->prophesize(MigrationContext::class);
 		$context->setContainer($this->container)->shouldBeCalled();
 		$context->getDatabase()->willReturn($this->database)->shouldBeCalled();
 
@@ -340,7 +341,7 @@ class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 	 */
 	protected function createMigrationRunnerMock($file_extension)
 	{
-		$runner = $this->prophesize('ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner');
+		$runner = $this->prophesize(AbstractMigrationRunner::class);
 		$runner->getFileExtension()->willReturn($file_extension)->shouldBeCalled();
 
 		return $runner;

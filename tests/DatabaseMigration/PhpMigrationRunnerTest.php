@@ -32,7 +32,8 @@ class PhpMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 
 	public function testRun()
 	{
-		$this->database->perform('test')->shouldBeCalled();
+		$pdo_statement = $this->prophesize(\PDOStatement::class)->reveal();
+		$this->database->perform('test')->willReturn($pdo_statement)->shouldBeCalled();
 
 		$this->runner->run($this->getFixture('non-empty-migration.php'), $this->context->reveal());
 	}

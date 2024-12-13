@@ -34,11 +34,14 @@ class SqlMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 	public function testRun()
 	{
 		$sequence = array();
+		$pdo_statement = $this->prophesize(\PDOStatement::class)->reveal();
 
 		$this->database
 			->perform(Argument::any())
-			->will(function (array $args) use (&$sequence) {
+			->will(function (array $args) use (&$sequence, $pdo_statement) {
 				$sequence[] = $args[0];
+
+				return $pdo_statement;
 			})
 			->shouldBeCalled();
 
