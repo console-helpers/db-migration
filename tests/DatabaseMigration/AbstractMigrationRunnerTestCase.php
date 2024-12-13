@@ -14,7 +14,7 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use Prophecy\Prophecy\ObjectProphecy;
 
-abstract class AbstractMigrationRunnerTest extends AbstractTestCase
+abstract class AbstractMigrationRunnerTestCase extends AbstractTestCase
 {
 
 	/**

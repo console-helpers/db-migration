@@ -14,7 +14,7 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\PhpMigrationRunner;
 
-class PhpMigrationRunnerTest extends AbstractMigrationRunnerTest
+class PhpMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 {
 
 	public function testGetFileExtension()

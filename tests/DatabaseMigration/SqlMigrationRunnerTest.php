@@ -15,7 +15,7 @@ use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\SqlMigrationRunner;
 use Prophecy\Argument;
 
-class SqlMigrationRunnerTest extends AbstractMigrationRunnerTest
+class SqlMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 {
 
 	public function testGetFileExtension()
