@@ -16,6 +16,7 @@ use ConsoleHelpers\DatabaseMigration\PhpMigrationRunner;
 
 class PhpMigrationRunnerTest extends AbstractMigrationRunnerTest
 {
+
 	public function testGetFileExtension()
 	{
 		$this->assertEquals('php', $this->runner->getFileExtension());
