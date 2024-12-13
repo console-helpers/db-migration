@@ -18,12 +18,9 @@ use ConsoleHelpers\DatabaseMigration\MigrationManager;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Tests\ConsoleHelpers\DatabaseMigration\ProphecyToken\RegExToken;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class MigrationManagerTest extends AbstractDatabaseAwareTestCase
 {
-
-	use ExpectException;
 
 	/**
 	 * Container.

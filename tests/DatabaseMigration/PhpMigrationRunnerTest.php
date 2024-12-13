@@ -13,13 +13,9 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\PhpMigrationRunner;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PhpMigrationRunnerTest extends AbstractMigrationRunnerTest
 {
-
-	use ExpectException;
-
 	public function testGetFileExtension()
 	{
 		$this->assertEquals('php', $this->runner->getFileExtension());

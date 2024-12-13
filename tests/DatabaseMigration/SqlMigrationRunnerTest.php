@@ -14,12 +14,9 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\SqlMigrationRunner;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class SqlMigrationRunnerTest extends AbstractMigrationRunnerTest
 {
-
-	use ExpectException;
 
 	public function testGetFileExtension()
 	{
