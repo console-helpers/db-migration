@@ -21,8 +21,30 @@ jobs:
 
     strategy:
       matrix:
-        # Don't test on PHP 8.4 due to "aura/sql" bug: https://github.com/auraphp/Aura.Sql/pull/231.
-        php: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+          include:
+            - php: '5.6'
+              phpunit_config: 'phpunit.xml.dist' # PHPUnit 5.7
+            - php: '7.0'
+              phpunit_config: 'phpunit.xml.dist' # PHPUnit 6.5
+            - php: '7.1'
+              phpunit_config: 'phpunit.xml.dist' # PHPUnit 7.5
+            - php: '7.2'
+              phpunit_config: 'phpunit.xml.dist' # PHPUnit 8.5
+            - php: '7.3'
+              phpunit_config: 'phpunit9.xml.dist' # PHPUnit 9.6
+            - php: '7.4'
+              phpunit_config: 'phpunit9.xml.dist' # PHPUnit 9.6
+            - php: '8.0'
+              phpunit_config: 'phpunit9.xml.dist' # PHPUnit 9.6
+            - php: '8.1'
+              phpunit_config: 'phpunit10.xml.dist' # PHPUnit 10.5
+            - php: '8.2'
+              phpunit_config: 'phpunit10.xml.dist' # PHPUnit 10.5
+            - php: '8.3'
+              phpunit_config: 'phpunit10.xml.dist' # PHPUnit 10.5
+  # Don't test on PHP 8.4 due to "aura/sql" bug: https://github.com/auraphp/Aura.Sql/pull/231.
+  #          - php: '8.4'
+  #            phpunit_config: 'phpunit10.xml.dist' # PHPUnit 10.5
       fail-fast: false
 
     steps:
@@ -45,7 +67,7 @@ jobs:
 
       - name: Run tests
         run: |
-          vendor/bin/phpunit --log-junit junit.xml --coverage-clover=coverage.clover
+          vendor/bin/phpunit --configuration ${{ matrix.phpunit_config }} --log-junit junit.xml --coverage-clover=coverage.clover
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
