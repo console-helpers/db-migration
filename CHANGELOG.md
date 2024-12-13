@@ -7,10 +7,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ...
 
 ### Changed
-- Increase minimal supported version of PHP to 5.6.
+...
 
 ### Fixed
 ...
+
+## [0.2.0] - 2024-12-14
+### Changed
+- Increase minimal supported version of PHP to 5.6.
+- Support v4 and v5 of "aura/sql" package.
 
 ## [0.1.1] - 2020-12-21
 ### Fixed
@@ -20,4 +25,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/console-helpers/svn-buddy/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/console-helpers/db-migration/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/console-helpers/db-migration/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/console-helpers/db-migration/compare/v0.1.0...v0.1.1
