@@ -13,9 +13,8 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use Aura\Sql\ExtendedPdoInterface;
 use ConsoleHelpers\DatabaseMigration\MigrationContext;
-use PHPUnit\Framework\TestCase;
 
-class MigrationContextTest extends TestCase
+class MigrationContextTest extends AbstractTestCase
 {
 
 	/**
@@ -45,7 +44,7 @@ class MigrationContextTest extends TestCase
 	 */
 	protected function setupTest()
 	{
-		$this->database = $this->prophesize('Aura\Sql\ExtendedPdoInterface')->reveal();
+		$this->database = $this->prophesize(ExtendedPdoInterface::class)->reveal();
 		$this->container = $this->prophesize('ArrayAccess')->reveal();
 
 		$this->context = new MigrationContext($this->database);

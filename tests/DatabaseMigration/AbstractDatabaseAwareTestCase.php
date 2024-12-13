@@ -1,11 +1,11 @@
 <?php
 /**
- * This file is part of the SVN-Buddy library.
+ * This file is part of the DB-Migration library.
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  *
  * @copyright Alexander Obuhovich <aik.bold@gmail.com>
- * @link      https://github.com/console-helpers/svn-buddy
+ * @link      https://github.com/console-helpers/db-migration
  */
 
 namespace Tests\ConsoleHelpers\DatabaseMigration;
@@ -13,9 +13,8 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use Aura\Sql\ExtendedPdo;
 use Aura\Sql\ExtendedPdoInterface;
-use PHPUnit\Framework\TestCase;
 
-abstract class AbstractDatabaseAwareTestCase extends TestCase
+abstract class AbstractDatabaseAwareTestCase extends AbstractTestCase
 {
 
 	/**
@@ -70,7 +69,7 @@ abstract class AbstractDatabaseAwareTestCase extends TestCase
 	 */
 	protected function assertTableContent($table_name, array $expected_content)
 	{
-		$this->assertSame(
+		$this->assertEquals(
 			$expected_content,
 			$this->_dumpTable($table_name),
 			'Table "' . $table_name . '" content isn\'t correct.'

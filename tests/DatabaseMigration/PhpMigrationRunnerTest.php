@@ -13,12 +13,9 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\PhpMigrationRunner;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
-class PhpMigrationRunnerTest extends AbstractMigrationRunnerTest
+class PhpMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 {
-
-	use ExpectException;
 
 	public function testGetFileExtension()
 	{
@@ -35,7 +32,8 @@ class PhpMigrationRunnerTest extends AbstractMigrationRunnerTest
 
 	public function testRun()
 	{
-		$this->database->perform('test')->shouldBeCalled();
+		$pdo_statement = $this->prophesize(\PDOStatement::class)->reveal();
+		$this->database->perform('test')->willReturn($pdo_statement)->shouldBeCalled();
 
 		$this->runner->run($this->getFixture('non-empty-migration.php'), $this->context->reveal());
 	}

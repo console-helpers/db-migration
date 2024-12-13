@@ -14,12 +14,9 @@ namespace Tests\ConsoleHelpers\DatabaseMigration;
 use ConsoleHelpers\DatabaseMigration\AbstractMigrationRunner;
 use ConsoleHelpers\DatabaseMigration\SqlMigrationRunner;
 use Prophecy\Argument;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
-class SqlMigrationRunnerTest extends AbstractMigrationRunnerTest
+class SqlMigrationRunnerTest extends AbstractMigrationRunnerTestCase
 {
-
-	use ExpectException;
 
 	public function testGetFileExtension()
 	{
@@ -37,11 +34,14 @@ class SqlMigrationRunnerTest extends AbstractMigrationRunnerTest
 	public function testRun()
 	{
 		$sequence = array();
+		$pdo_statement = $this->prophesize(\PDOStatement::class)->reveal();
 
 		$this->database
 			->perform(Argument::any())
-			->will(function (array $args) use (&$sequence) {
+			->will(function (array $args) use (&$sequence, $pdo_statement) {
 				$sequence[] = $args[0];
+
+				return $pdo_statement;
 			})
 			->shouldBeCalled();
 
